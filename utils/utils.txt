@@ -1,0 +1,12 @@
+Mainnets
+
+EthMain: 0x1
+MaticMain: 0x89
+AvaxMain: 0xa86a
+BscMain: 0x38
+
+Testnets
+
+EthRinkeby: 0x4
+Avax: 0xa869
+BSC: 0x61
