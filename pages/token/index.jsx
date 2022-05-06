@@ -1,45 +1,46 @@
-import React, { useEffect, useState } from 'react'
-import { useChain, useERC20Balances, useMoralis } from 'react-moralis'
+import React, { useEffect, useState } from "react";
+import { useChain, useERC20Balances, useMoralis } from "react-moralis";
 
 import {
   AvaxLogo,
   BSCLogo,
   ETHLogo,
   PolygonLogo,
-} from '../../components/Icons/Icons'
-import { useDispatch } from 'react-redux'
-import SingleToken from '../../components/Token/SingleToken'
+} from "../../components/Icons/Icons";
+import { useDispatch } from "react-redux";
+import SingleToken from "../../components/Token/SingleToken";
+import SendERC20 from "../../components/Prompts/Tokens/SendERC20";
 
 const App = () => {
-  const { fetchERC20Balances } = useERC20Balances()
-  const { chainId } = useChain()
-  const { isAuthenticated } = useMoralis()
-  const [token, setToken] = useState([])
+  const { fetchERC20Balances } = useERC20Balances();
+  const { chainId } = useChain();
+  const { isAuthenticated } = useMoralis();
+  const [token, setToken] = useState([]);
 
   const fetchBalance = async () => {
-    const balance = await fetchERC20Balances({ params: { chain: chainId } })
-    setToken(balance)
-  }
+    const balance = await fetchERC20Balances({ params: { chain: chainId } });
+    setToken(balance);
+  };
 
-  let Comp
+  let Comp;
 
-  if (chainId === ('0x1' || '0x4' || '0x2a' || '0x5' || '0x3')) {
-    Comp = <ETHLogo height={30} width={30} />
-  } else if (chainId === ('0x89' || '0x13881')) {
-    Comp = <PolygonLogo height={30} width={30} />
-  } else if (chainId === ('0x38' || '0x61')) {
-    Comp = <BSCLogo height={30} width={30} />
-  } else if (chainId === ('0xa86a' || '0xa869')) {
-    Comp = <AvaxLogo height={30} width={30} />
+  if (chainId === ("0x1" || "0x4" || "0x2a" || "0x5" || "0x3")) {
+    Comp = <ETHLogo height={30} width={30} />;
+  } else if (chainId === ("0x89" || "0x13881")) {
+    Comp = <PolygonLogo height={30} width={30} />;
+  } else if (chainId === ("0x38" || "0x61")) {
+    Comp = <BSCLogo height={30} width={30} />;
+  } else if (chainId === ("0xa86a" || "0xa869")) {
+    Comp = <AvaxLogo height={30} width={30} />;
   } else {
-    Comp = <ETHLogo height={30} width={30} />
+    Comp = <ETHLogo height={30} width={30} />;
   }
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchBalance()
-  }, [chainId, isAuthenticated])
+    fetchBalance();
+  }, [chainId, isAuthenticated]);
 
   return (
     <div className="ml-4 p-7">
@@ -67,16 +68,16 @@ const App = () => {
       ) : (
         <p>
           <span
-            onClick={() => dispatch({ type: 'TOGGLE_AUTH_HOLDER' })}
+            onClick={() => dispatch({ type: "TOGGLE_AUTH_HOLDER" })}
             className="cursor-pointer text-yellow-500"
           >
             Authenticate
-          </span>{' '}
+          </span>{" "}
           to get access to this page
         </p>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

@@ -16,6 +16,17 @@
     fill: gray;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .home-bg{
     background: radial-gradient(30% 30% at 20% 60%, rgba(255, 199, 0, 0.2) 0%, rgba(255, 0, 0, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, #494949;
 }
